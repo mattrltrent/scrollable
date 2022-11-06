@@ -27,13 +27,13 @@ _It's hard to display haptics in a gif, but they're there._
 ## Installing 🧑‍🏫
 
 - Install the package from the pub.
-  - `flutter pub add scrollable_view`
+  - `flutter pub add scrollable`
 - Import the package.
-  - `import 'package:scrollable/scrollable.dart';`
+  - `import 'package:scrollable/exports.dart';`
 
 ## Quick Start 💨
 
-Simply wrap whatever you want inside the `ScrollHaptics`, `KeyboardDismiss`, or `ScrollableView` widget, then edit whatever of its many properties you want!
+Simply wrap whatever you want inside the `ScrollHaptics`, `KeyboardDismiss`, or `ScrollableView` widgets, then edit whatever of their properties you want!
 
 ## Short Examples of the 3 Widgets 📜
 
@@ -126,7 +126,7 @@ ScrollableView(
 <details>
 <summary>Keyboard Dismiss</summary>
 
-## **`Keyboard Dismiss`**
+## **`KeyboardDismiss`**
 
 - `child` (required): This widget's child.
 - `bubbleUpScrollNotifications`: Whether the widget should bubble up scroll notifications, or block them.
