@@ -64,9 +64,13 @@ class _ScrollHapticsState extends State<ScrollHaptics> {
   Widget build(BuildContext context) {
     return NotificationListener<ScrollNotification>(
       onNotification: (notification) {
-        if (notification.metrics.atEdge && !_alreadyVibratedForEdge && widget.heavyHapticsAtEdgeEnabled) {
+        if (notification.metrics.atEdge &&
+            !_alreadyVibratedForEdge &&
+            widget.heavyHapticsAtEdgeEnabled) {
           _alreadyVibratedForEdge = true;
-          widget.hapticEffectAtEdge == null ? HapticFeedback.heavyImpact() : _hapticEffect(widget.hapticEffectAtEdge!);
+          widget.hapticEffectAtEdge == null
+              ? HapticFeedback.heavyImpact()
+              : _hapticEffect(widget.hapticEffectAtEdge!);
           return !widget.bubbleUpScrollNotifications;
         }
         if (notification is! ScrollUpdateNotification) return true;

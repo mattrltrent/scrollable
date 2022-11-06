@@ -8,7 +8,7 @@
 
 #### 💥 `ScrollHaptics`
 
-- Applies haptic feedback when its `child` is scrolled (during scroll & edge of scroll view).
+- Applies haptic feedback when its `child` is scrolled (during scroll & reaching edge of scroll view).
 
 #### 💥 `KeyboardDismiss`
 
@@ -68,6 +68,7 @@ ScrollHaptics(
 
 ```dart
 KeyboardDismiss(
+          // <Assorted Properties Here>
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -89,6 +90,7 @@ KeyboardDismiss(
 
 ```dart
 ScrollableView(
+          // <Assorted Properties Here>
         controller: ScrollController(),
         child: SingleChildScrollView(
           child: Column(
@@ -163,4 +165,4 @@ ScrollableView(
 
 - I'll look through PRs and issues as soon as I can!
 
-- [Learn about me](me@matthewtrent.me).
+- [Learn about me](https://matthewtrent.me).

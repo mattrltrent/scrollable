@@ -27,11 +27,16 @@ class _KeyboardDismissState extends State<KeyboardDismiss> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => widget.closeKeyboardOnTap ? FocusScope.of(context).unfocus() : null,
+      onTap: () {
+        if (widget.closeKeyboardOnTap) {
+          FocusScope.of(context).unfocus();
+        }
+      },
       child: NotificationListener<ScrollNotification>(
         onNotification: (notification) {
           if (notification is UserScrollNotification &&
-              (_lastScrollNotification == null || _lastScrollNotification is ScrollStartNotification)) {
+              (_lastScrollNotification == null ||
+                  _lastScrollNotification is ScrollStartNotification)) {
             FocusScope.of(context).unfocus();
           }
           _lastScrollNotification = notification;

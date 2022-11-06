@@ -131,7 +131,9 @@ class _ScrollableViewState extends State<ScrollableView> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        widget.closeKeyboardOnTap ? FocusScope.of(context).unfocus() : null;
+        if (widget.closeKeyboardOnTap) {
+          FocusScope.of(context).unfocus();
+        }
       },
       child: Padding(
         padding: widget.padding ?? const EdgeInsets.all(0),
@@ -139,13 +141,16 @@ class _ScrollableViewState extends State<ScrollableView> {
           onNotification: (notification) {
             if (widget.closeKeyboardOnScroll) {
               if (notification is UserScrollNotification &&
-                  (_lastScrollNotification == null || _lastScrollNotification is ScrollStartNotification)) {
+                  (_lastScrollNotification == null ||
+                      _lastScrollNotification is ScrollStartNotification)) {
                 FocusScope.of(context).unfocus();
               }
               _lastScrollNotification = notification;
             }
             if (widget.hapticsEnabled) {
-              if (notification.metrics.atEdge && !_alreadyVibratedForEdge && widget.heavyHapticsAtEdgeEnabled) {
+              if (notification.metrics.atEdge &&
+                  !_alreadyVibratedForEdge &&
+                  widget.heavyHapticsAtEdgeEnabled) {
                 _alreadyVibratedForEdge = true;
                 widget.hapticEffectAtEdge == null
                     ? HapticFeedback.heavyImpact()
@@ -172,7 +177,8 @@ class _ScrollableViewState extends State<ScrollableView> {
             child: SingleChildScrollView(
               reverse: widget.reverse,
               primary: widget.primary,
-              dragStartBehavior: widget.dragStartBehavior ?? DragStartBehavior.start,
+              dragStartBehavior:
+                  widget.dragStartBehavior ?? DragStartBehavior.start,
               restorationId: widget.restorationId,
               scrollDirection: widget.scrollDirection,
               physics: widget.physics,

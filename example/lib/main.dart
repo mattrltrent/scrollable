@@ -67,8 +67,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Container(width: double.infinity, height: 150, color: Colors.red),
-              Container(width: double.infinity, height: 150, color: Colors.green),
-              Container(width: double.infinity, height: 150, color: Colors.pink),
+              Container(
+                  width: double.infinity, height: 150, color: Colors.green),
+              Container(
+                  width: double.infinity, height: 150, color: Colors.pink),
               Container(
                 width: double.infinity,
                 color: Colors.white,
@@ -87,12 +89,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              Container(width: double.infinity, height: 150, color: Colors.purple),
-              Container(width: double.infinity, height: 150, color: Colors.cyan),
-              Container(width: double.infinity, height: 150, color: Colors.brown),
-              Container(width: double.infinity, height: 150, color: Colors.orangeAccent),
-              Container(width: double.infinity, height: 150, color: Colors.lightGreen),
-              Container(width: double.infinity, height: 150, color: Colors.yellowAccent),
+              Container(
+                  width: double.infinity, height: 150, color: Colors.purple),
+              Container(
+                  width: double.infinity, height: 150, color: Colors.cyan),
+              Container(
+                  width: double.infinity, height: 150, color: Colors.brown),
+              Container(
+                  width: double.infinity,
+                  height: 150,
+                  color: Colors.orangeAccent),
+              Container(
+                  width: double.infinity,
+                  height: 150,
+                  color: Colors.lightGreen),
+              Container(
+                  width: double.infinity,
+                  height: 150,
+                  color: Colors.yellowAccent),
             ],
           ),
         ),
