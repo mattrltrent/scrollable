@@ -33,8 +33,9 @@ class _KeyboardDismissState extends State<KeyboardDismiss> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onVerticalDragStart: (_) {
-        if (!_alreadyDismissedThisDrag && widget.closeKeyboardOnVerticalSwipe)
+        if (!_alreadyDismissedThisDrag && widget.closeKeyboardOnVerticalSwipe) {
           FocusScope.of(context).unfocus();
+        }
       },
       onVerticalDragUpdate: (_) => _alreadyDismissedThisDrag = true,
       onVerticalDragEnd: (_) => _alreadyDismissedThisDrag = false,

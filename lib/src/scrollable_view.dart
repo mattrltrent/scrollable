@@ -18,7 +18,7 @@ class ScrollableView extends StatefulWidget {
     this.inlineTopOrLeftPadding = 0.0,
     this.padding,
     this.hapticsEnabled = true,
-    this.distancebetweenHapticEffectsDuringScroll = 15,
+    this.distancebetweenHapticEffectsDuringScroll = 50,
     this.heavyHapticsAtEdgeEnabled = true,
     this.hapticEffectAtEdge,
     this.hapticEffectDuringScroll,
@@ -136,8 +136,9 @@ class _ScrollableViewState extends State<ScrollableView> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onVerticalDragStart: (_) {
-        if (!_alreadyDismissedThisDrag && widget.closeKeyboardOnVerticalSwipe)
+        if (!_alreadyDismissedThisDrag && widget.closeKeyboardOnVerticalSwipe) {
           FocusScope.of(context).unfocus();
+        }
       },
       onVerticalDragUpdate: (_) => _alreadyDismissedThisDrag = true,
       onVerticalDragEnd: (_) => _alreadyDismissedThisDrag = false,
@@ -165,7 +166,7 @@ class _ScrollableViewState extends State<ScrollableView> {
                   widget.heavyHapticsAtEdgeEnabled) {
                 _alreadyVibratedForEdge = true;
                 widget.hapticEffectAtEdge == null
-                    ? HapticFeedback.heavyImpact()
+                    ? HapticFeedback.mediumImpact()
                     : _hapticEffect(widget.hapticEffectAtEdge!);
                 return !widget.bubbleUpScrollNotifications;
               }

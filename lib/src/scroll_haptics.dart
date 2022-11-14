@@ -11,7 +11,7 @@ class ScrollHaptics extends StatefulWidget {
     this.heavyHapticsAtEdgeEnabled = true,
     this.hapticEffectAtEdge,
     this.hapticEffectDuringScroll,
-    this.distancebetweenHapticEffectsDuringScroll = 15,
+    this.distancebetweenHapticEffectsDuringScroll = 50,
   });
 
   /// This widget's child.
@@ -69,7 +69,7 @@ class _ScrollHapticsState extends State<ScrollHaptics> {
             widget.heavyHapticsAtEdgeEnabled) {
           _alreadyVibratedForEdge = true;
           widget.hapticEffectAtEdge == null
-              ? HapticFeedback.heavyImpact()
+              ? HapticFeedback.mediumImpact()
               : _hapticEffect(widget.hapticEffectAtEdge!);
           return !widget.bubbleUpScrollNotifications;
         }
