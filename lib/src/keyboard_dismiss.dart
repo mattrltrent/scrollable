@@ -6,6 +6,7 @@ class KeyboardDismiss extends StatefulWidget {
     required this.child,
     this.closeKeyboardOnTap = true,
     this.bubbleUpScrollNotifications = true,
+    this.closeKeyboardOnVerticalSwipe = true,
   });
 
   /// This widget's child.
@@ -17,16 +18,27 @@ class KeyboardDismiss extends StatefulWidget {
   /// If the keyboard should also be closed just on the widget being tapped.
   final bool closeKeyboardOnTap;
 
+  /// If the keyboard should be closed when a vertical swipe occurs.
+  final bool closeKeyboardOnVerticalSwipe;
+
   @override
   State<KeyboardDismiss> createState() => _KeyboardDismissState();
 }
 
 class _KeyboardDismissState extends State<KeyboardDismiss> {
   ScrollNotification? _lastScrollNotification;
+  bool _alreadyDismissedThisDrag = false;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onVerticalDragStart: (_) {
+        if (!_alreadyDismissedThisDrag && widget.closeKeyboardOnVerticalSwipe)
+          FocusScope.of(context).unfocus();
+      },
+      onVerticalDragUpdate: (_) => _alreadyDismissedThisDrag = true,
+      onVerticalDragEnd: (_) => _alreadyDismissedThisDrag = false,
+      behavior: HitTestBehavior.translucent,
       onTap: () {
         if (widget.closeKeyboardOnTap) {
           FocusScope.of(context).unfocus();

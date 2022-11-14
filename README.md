@@ -12,7 +12,7 @@
 
 #### 💥 `KeyboardDismiss`
 
-- Dismisses the soft-keyboard when its `child` is scrolled, or tapped.
+- Dismisses the soft-keyboard when its `child` is scrolled, tapped, or swiped.
 
 #### 💥 `ScrollableView`
 
@@ -131,6 +131,7 @@ ScrollableView(
 - `child` (required): This widget's child.
 - `bubbleUpScrollNotifications`: Whether the widget should bubble up scroll notifications, or block them.
 - `closeKeyboardOnTap`: If the keyboard should also be closed just on the widget being tapped.
+- `closeKeyboardOnVerticalSwipe`: If the keyboard should be closed when a vertical swipe occurs.
 </details>
 
 <details>
@@ -157,6 +158,7 @@ ScrollableView(
 - `dragStartBehavior`: Determines the way that drag start behavior is handled.
 - `restorationId`: Restoration ID to save and restore the scroll offset of the scrollable.
 - `reverse`: Whether the scroll view scrolls in the reading direction.
+- `closeKeyboardOnVerticalSwipe`: If the keyboard should be closed when a vertical swipe occurs.
 </details>
 
 ## Additional Info 📣

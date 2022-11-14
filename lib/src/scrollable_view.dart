@@ -27,6 +27,7 @@ class ScrollableView extends StatefulWidget {
     this.restorationId,
     this.scrollBarVisible = true,
     this.reverse = false,
+    this.closeKeyboardOnVerticalSwipe = true,
   })  : assert(distancebetweenHapticEffectsDuringScroll >= 0),
         super(key: key);
 
@@ -98,6 +99,9 @@ class ScrollableView extends StatefulWidget {
   /// Whether the scroll view scrolls in the reading direction.
   final bool reverse;
 
+  /// If the keyboard should be closed when a vertical swipe occurs.
+  final bool closeKeyboardOnVerticalSwipe;
+
   @override
   State<ScrollableView> createState() => _ScrollableViewState();
 }
@@ -106,6 +110,7 @@ class _ScrollableViewState extends State<ScrollableView> {
   ScrollNotification? _lastScrollNotification;
   double _scrollDelta = 0.0;
   bool _alreadyVibratedForEdge = true;
+  bool _alreadyDismissedThisDrag = false;
 
   void _hapticEffect(HapticType hapticType) {
     switch (hapticType) {
@@ -130,6 +135,13 @@ class _ScrollableViewState extends State<ScrollableView> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onVerticalDragStart: (_) {
+        if (!_alreadyDismissedThisDrag && widget.closeKeyboardOnVerticalSwipe)
+          FocusScope.of(context).unfocus();
+      },
+      onVerticalDragUpdate: (_) => _alreadyDismissedThisDrag = true,
+      onVerticalDragEnd: (_) => _alreadyDismissedThisDrag = false,
+      behavior: HitTestBehavior.translucent,
       onTap: () {
         if (widget.closeKeyboardOnTap) {
           FocusScope.of(context).unfocus();
