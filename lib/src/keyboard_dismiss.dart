@@ -7,10 +7,14 @@ class KeyboardDismiss extends StatefulWidget {
     this.closeKeyboardOnTap = true,
     this.bubbleUpScrollNotifications = true,
     this.closeKeyboardOnVerticalSwipe = true,
+    this.onKeyboardDismissed,
   });
 
   /// This widget's child.
   final Widget child;
+
+  /// A callback that's fired when a user dismisses they keyboard
+  final VoidCallback? onKeyboardDismissed;
 
   /// Whether the widget should bubble up scroll notifications, or block them.
   final bool bubbleUpScrollNotifications;
@@ -29,12 +33,19 @@ class _KeyboardDismissState extends State<KeyboardDismiss> {
   ScrollNotification? _lastScrollNotification;
   bool _alreadyDismissedThisDrag = false;
 
+  void onDismiss() {
+    FocusScope.of(context).unfocus();
+    if (widget.onKeyboardDismissed != null) {
+      widget.onKeyboardDismissed!();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onVerticalDragStart: (_) {
         if (!_alreadyDismissedThisDrag && widget.closeKeyboardOnVerticalSwipe) {
-          FocusScope.of(context).unfocus();
+          onDismiss();
         }
       },
       onVerticalDragUpdate: (_) => _alreadyDismissedThisDrag = true,
@@ -42,15 +53,14 @@ class _KeyboardDismissState extends State<KeyboardDismiss> {
       behavior: HitTestBehavior.translucent,
       onTap: () {
         if (widget.closeKeyboardOnTap) {
-          FocusScope.of(context).unfocus();
+          onDismiss();
         }
       },
       child: NotificationListener<ScrollNotification>(
         onNotification: (notification) {
           if (notification is UserScrollNotification &&
-              (_lastScrollNotification == null ||
-                  _lastScrollNotification is ScrollStartNotification)) {
-            FocusScope.of(context).unfocus();
+              (_lastScrollNotification == null || _lastScrollNotification is ScrollStartNotification)) {
+            onDismiss();
           }
           _lastScrollNotification = notification;
           return !widget.bubbleUpScrollNotifications;

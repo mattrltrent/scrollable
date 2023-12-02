@@ -1,6 +1,6 @@
 name: scrollable
 description: A powerful set of scrollable widgets including haptics, keyboard dismissing, and more.
-version: 1.0.3
+version: 1.0.5
 homepage: https://matthewtrent.me/
 repository: https://github.com/mattrltrent/scrollable
 issue_tracker: https://github.com/mattrltrent/scrollable/issues

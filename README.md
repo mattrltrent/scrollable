@@ -132,6 +132,7 @@ ScrollableView(
 - `bubbleUpScrollNotifications`: Whether the widget should bubble up scroll notifications, or block them.
 - `closeKeyboardOnTap`: If the keyboard should also be closed just on the widget being tapped.
 - `closeKeyboardOnVerticalSwipe`: If the keyboard should be closed when a vertical swipe occurs.
+- `onKeyboardDismissed`: Callback triggered when a dismiss occurs.
 </details>
 
 <details>
@@ -168,3 +169,5 @@ ScrollableView(
 - I'll look through PRs and issues as soon as I can!
 
 - [Learn about me](https://matthewtrent.me).
+
+![analytics](https://hidden-coast-90561-45544df95b1b.herokuapp.com/api/v1/analytics/?kind=package-scrollable)
